@@ -16,6 +16,10 @@ function writePassword() {
 
 //function returning a password as value and following the users criterias
 function generatePassword() {
+  //variable to store the new password
+  var passwordNew = [];
+  // big pool will contain all the pools the user chose to get characters from
+  var bigPool = [];
   // prompt the user to choose the length of the password
   var message = "please pick a length for the password";
   //call the function promptCheck I created to check user entry and return a valid value
@@ -83,6 +87,14 @@ function generatePassword() {
     bigPool = bigPool.concat(charactersArray);
     //console.log(bigPool);
   }
+  // a pool to fill the rest of the password
+  console.log(bigPool);
+  for (let i = 0; i < passLength; i++) {
+    // add a random character at each iteration
+    passwordNew.push(bigPool[Math.floor(Math.random() * bigPool.length)]);
+    //console.log(passLength);
+  }
+  //return password value
   return passwordNew.join("");
 }
 
