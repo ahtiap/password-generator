@@ -22,9 +22,16 @@ function generatePassword() {
   var bigPool = [];
   // prompt the user to choose the length of the password
   var message = "please pick a length for the password";
-  //call the function promptCheck I created to check user entry and return a valid value
-  var passLength = promptCheck(passLength, message);
+  //variable to store password length
+  var passLength;
+  // loop to make sure user chooses between 8 and 128 characters
+  do {
+    //call the function promptCheck I created to check user entry and return a valid value
+    alert("Password can't be less than 8 characters long or more than 128 characters");
+    passLength= promptCheck(passLength, message);
   //console.log(passLength);
+  } while (passLength<8 || passLength>128);
+  
 
   //make sure the user chooses at least one type of characters to include
   while (!numbers && !upperLetters && !lowerLetters && !characters) {
@@ -88,7 +95,7 @@ function generatePassword() {
     //console.log(bigPool);
   }
   // a pool to fill the rest of the password
-  console.log(bigPool);
+  //console.log(bigPool);
   for (let i = 0; i < passLength; i++) {
     // add a random character at each iteration
     passwordNew.push(bigPool[Math.floor(Math.random() * bigPool.length)]);
@@ -118,7 +125,7 @@ function promptCheck(numberInput, message) {
       //   if both previous conditions are false then pass the value
     } else {
       numberInput = parseInt(numberInput);
-      console.log(numberInput);
+      //console.log(numberInput);
       isNumber = true;
     }
   }
