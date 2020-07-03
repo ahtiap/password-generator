@@ -29,14 +29,14 @@ function generatePassword() {
     //call the function promptCheck I created to check user entry and return a valid value
     alert("Password can't be less than 8 characters long or more than 128 characters");
     passLength= promptCheck(passLength, message);
-  //console.log(passLength);
+  // console.log(passLength);
   } while (passLength<8 || passLength>128);
   
 
   //make sure the user chooses at least one type of characters to include
   while (!numbers && !upperLetters && !lowerLetters && !characters) {
     var numbers = confirm("Would you like to include numbers?");
-    // console.log("Made a choice about NUMBERS.");
+    //  console.log("Made a choice about NUMBERS.");
     var upperLetters = confirm("Would you like to include uppercase letters?");
     // console.log("Made a choice about UPPER LETTERS.");
     var lowerLetters = confirm("Would you like to include lowercase letters?");
