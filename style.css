@@ -135,3 +135,8 @@ button[disabled] {
     font-size: 0.8rem;
   }
 }
+/*lower margin on h5 in forms*/
+.h5{
+margin-block-start: 0.80em;
+margin-block-end: 0.80em;
+}
