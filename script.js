@@ -6,6 +6,14 @@ var upperLettersArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 var lowerLettersArray = "abcdefghijklmnopqrstuvwxyz".split("");
 var numbersArray = "1234567890".split("");
 
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+}
+
 //function returning a password as value and following the users criterias
 function generatePassword() {
   // prompt the user to choose the length of the password
@@ -14,7 +22,7 @@ function generatePassword() {
   var passLength = promptCheck(passLength, message);
   //console.log(passLength);
 
-  //make sure the user choses at least one type of characters to include
+  //make sure the user chooses at least one type of characters to include
   while (!numbers && !upperLetters && !lowerLetters && !characters) {
     var numbers = confirm("Would you like to include numbers?");
     // console.log("Made a choice about NUMBERS.");
@@ -27,13 +35,55 @@ function generatePassword() {
       alert("you have to pick at least one criteria");
     }
   }
-}
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
+  //variable to store the new password
+  var passwordNew = [];
+  // big pool will contain all the pools the user chose to get characters from
+  var bigPool = [];
+  // if selected make sure at least one number is in the mix
+  if (numbers) {
+    passwordNew.push(
+      numbersArray[Math.floor(Math.random() * numbersArray.length)]
+    );
+    //update password length
+    passLength--;
+    // add the numbers to the big pool
+    bigPool = bigPool.concat(numbersArray);
+    //console.log(bigPool);
+  }
+  // if selected make sure at least one uppercase letter is in the mix
+  if (upperLetters) {
+    passwordNew.push(
+      upperLettersArray[Math.floor(Math.random() * upperLettersArray.length)]
+    );
+    //update password length
+    passLength--;
+    // add the uppercase letters to the big pool
+    bigPool = bigPool.concat(upperLettersArray);
+    //console.log(bigPool);
+  }
+  // if selected make sure at least one lowercase is in the mix
+  if (lowerLetters) {
+    passwordNew.push(
+      lowerLettersArray[Math.floor(Math.random() * lowerLettersArray.length)]
+    );
+    //update password length
+    passLength--;
+    // add the lower letters  to the big pool
+    bigPool = bigPool.concat(lowerLettersArray);
+    //console.log(bigPool);
+  }
+  // if selected make sure at least one special character is in the mix
+  if (characters) {
+    passwordNew.push(
+      charactersArray[Math.floor(Math.random() * charactersArray.length)]
+    );
+    //update password length
+    passLength--;
+    // add the special characters  to the big pool
+    bigPool = bigPool.concat(charactersArray);
+    //console.log(bigPool);
+  }
+  return passwordNew.join("");
 }
 
 // function to check the user input
