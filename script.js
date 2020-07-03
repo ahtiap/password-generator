@@ -9,13 +9,9 @@ var numbersArray = "1234567890".split("");
 //function returning a password as value and following the users criterias
 function generatePassword() {
   // prompt the user to choose the length of the password
-  var passLength;
-  alert(
-    "password Length should be no less than 8 characters and no more than 128 characters."
-  );
-  passLength = parseInt(
-    prompt("How many characters would you like your password to be?")
-  );
+  var message = "please pick a length for the password";
+  //call the function promptCheck I created to check user entry and return a valid value
+  var passLength = promptCheck(passLength, message);
   //console.log(passLength);
 
   //make sure the user choses at least one type of characters to include
@@ -38,6 +34,33 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+}
+
+// function to check the user input
+function promptCheck(numberInput, message) {
+  //loop to make sure the user enters a valid value
+  // boolean variable to run the loop with
+  var isNumber = false;
+  //start of the loop
+  while (!isNumber) {
+    // give the use option to pick a number
+    numberInput = prompt(message);
+    //check if user clicks on cancel
+    if (numberInput == null) {
+      //if he does ask him to enter a  value
+      alert("please enter a value");
+      //check if user enters a correct number
+    } else if (isNaN(parseInt(numberInput))) {
+      //if he doesnt ask him to enter a valid number
+      alert("please enter a valid number");
+      //   if both previous conditions are false then pass the value
+    } else {
+      numberInput = parseInt(numberInput);
+      console.log(numberInput);
+      isNumber = true;
+    }
+  }
+  return numberInput;
 }
 
 // Add event listener to generate button
