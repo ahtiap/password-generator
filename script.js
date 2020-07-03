@@ -22,29 +22,22 @@ function generatePassword() {
   var bigPool = [];
   
 
-  //make sure the user chooses at least one type of characters to include
+  
+ 
+  // get the length chose by the user through the number input
+  // variable to store the length the user chose
+  var passLength = document.getElementById("length").value;
+  //console.log(passLength);
   // get checkbox status from the DOM
   var numbers = document.getElementById("num").checked;
   var upCase = document.getElementById("upCase").checked;
   var lowCase = document.getElementById("lowCase").checked;
   var spcChar = document.getElementById("spcChar").checked;
 
-  //make sure the user has checked at least one box to generate a password
-  if (numbers || upCase || lowCase || spcChar) {
-    // prompt the user to choose the length of the password
-  var message = "please pick a length for the password";
-  //variable to store password length
-  var passLength;
-  // loop to make sure user chooses between 8 and 128 characters
-  do {
-    //call the function promptCheck I created to check user entry and return a valid value
-    alert(
-      "Password has to be at least 8 characters long and no more than 128 characters"
-    );
-    passLength = promptCheck(passLength, message);
-    // console.log(passLength);
-  } while (passLength < 8 || passLength > 128);
-    
+  /*make sure the user has checked at least one box and the length
+  he chose is within the range to generate a password*/
+  if ((numbers || upCase || lowCase || spcChar) && (passLength>=8 && passLength<=128)) {
+  
     // if selected make sure at least one number is in the mix
     if (numbers) {
       passwordNew.push(
@@ -100,6 +93,9 @@ function generatePassword() {
     return passwordNew.join("");
   }
   //otherwise let them now in the text box
+  else if (passLength<8 || passLength>128) {
+    return "The Password Should be a minimum of 8 characters\n and a maximum of 128";
+  }
   else {
     return "You have to choose at least one criteria";
   }
